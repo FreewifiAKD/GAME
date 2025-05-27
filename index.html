@@ -1,21 +1,96 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Website with Game</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weak to Warrior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 2px 2px #0ff;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      background: #0ff;
+      border: none;
+      border-radius: 10px;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .content {
+      background: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      max-width: 600px;
+      text-align: center;
+    }
+    .theme-toggle {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Simple Website</h1>
-        <p>Enjoy the simple click game below!</p>
-        <div class="game">
-            <p>Score: <span id="score">0</span></p>
-            <button id="clickButton">Click me!</button>
-        </div>
-    </div>
-    <script src="js/game.js"></script>
-</body>
+  <header>
+    <h1>Weak to Warrior</h1>
+  </header>  <nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('training')">Training</button>
+    <button onclick="showSection('shadow')">Shadowboxing</button>
+    <button onclick="showSection('calendar')">Calendar</button>
+    <button onclick="showSection('diet')">Diet</button>
+    <button onclick="showSection('defense')">Defense</button>
+    <button onclick="showSection('tracker')">Progress</button>
+  </nav>  <div class="content" id="sectionContent">Welcome to Weak to Warrior! Choose a section above to begin.</div>  <div class="theme-toggle">
+    <button onclick="speak()">Coach Voice</button>
+  </div>  <script>
+    const sections = {
+      home: "Welcome to Weak to Warrior! Choose a section above to begin.",
+      training: "Daily Training: Push-ups, squats, planks. Start with what you can do. Even 1 push-up is progress.",
+      shadow: "Shadowboxing Guide: Jab, cross, elbow, footwork — 1 min each round. Stand tall and stay focused.",
+      calendar: "Weekly Plan: Mon – Push-ups. Tue – Legs. Wed – Rest. Thu – Combo. Fri – Pull-ups. Sat – Full. Sun – Recovery.",
+      diet: "Diet Plan: Eggs, dal, vegetables, chapatis, fruits. Water 2-3L daily. Avoid junk. Sleep 7-8 hrs.",
+      defense: "Self-Defense: Jab, Cross, Elbow, Knee, Escape. Practice flows slowly until automatic.",
+      tracker: "Progress Tracker: Record reps, weight, plank time, and notes every 2 weeks."
+    };
+
+    function showSection(key) {
+      document.getElementById('sectionContent').innerText = sections[key];
+    }
+
+    function speak() {
+      const text = document.getElementById('sectionContent').innerText;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      speechSynthesis.speak(utterance);
+    }
+  </script></body>
 </html>
